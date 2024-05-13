@@ -220,6 +220,7 @@ int removerElemento(Lista *lista, char remover[]){
             lista->prim->prox->ant = NULL;
         lista->prim = lista->prim->prox;
         free(aux);
+        printf("Elemento removido.\n");
         return 1;
     }
 
@@ -231,10 +232,12 @@ int removerElemento(Lista *lista, char remover[]){
         if (p->prox != NULL)
             p->prox->ant = p->ant;
         free(aux);
+        printf("Elemento removido.\n");
         return 1;
     }
 }
-    printf("valor nao foi encontrado\n");
+    
+    printf("Elemento nao encontrado\n");
     return 0;
 }
 
@@ -301,8 +304,13 @@ int main() {
             }
         break;
         case 4:
+            if(lista->prim == NULL){
+                    printf("A lista esta vazia\n");
+                    return 0;
+                }
             printf("Sera exibido em que ordem? \n1.Normal \n2.Inversa\n");
             scanf("%d",&ordem);
+            
             switch(ordem){
                 case 1:
                 imprimirElementos(lista);
