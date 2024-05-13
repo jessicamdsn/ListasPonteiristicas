@@ -28,5 +28,5 @@ Todas as implementações de listas suportam as seguintes operações:
 
 ### Autores
 
-- Jessica Maria de Souza Neves
-- Pedro Henrique de Araujo Santos
+- Jessica Maria de Souza Neves: https://github.com/jessicamdsn
+- Pedro Henrique de Araujo Santos: https://github.com/pedrohhenriqueas
