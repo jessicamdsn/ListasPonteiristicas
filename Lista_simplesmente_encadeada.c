@@ -1,3 +1,20 @@
+/****************************************************************** 
+ * Nome: Lista encadeada                                          *
+ * Descricao: Implementacao de lista encadeada. Esse codigo possui*
+ *            as principais operacoes da lista, como:             *
+ *            criar lista,                                        *
+ *            inserir elemento,                                   *
+ *            remover elemento,                                   *
+ *            buscar elemento,                                    *
+ *            mostrar elementos,                                  *
+ *            atualizar elementos,                                *
+ *            excluir lista.                                      *
+ * Autores:                                                       *
+ * Jessica Maria de Souza Neves                                   *
+ * Pedro Henrique de Araujo Santos                                *
+ * Ultima alteracao: 13/05/2024                                   *
+ ******************************************************************/
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,7 +25,7 @@
 typedef struct listaNo{
     char titulo[50];
     char genero[30];
-    char classificacao[7];
+    char classificacao[8];
     int duracao;
     double valor_aluguel;
     int disponibilidade;
@@ -56,7 +73,7 @@ int inserirElemento(Lista *lista, char titulo[], char genero[], char classificac
 
     if(lista->prim == NULL){
         lista->prim = nova;
-        printf("Itens inseridos com sucesso bb!\n");
+        printf("Itens inseridos com sucesso!\n\n");
         return 1;
     }
 
@@ -64,7 +81,7 @@ int inserirElemento(Lista *lista, char titulo[], char genero[], char classificac
 
     p->prox = nova;
 
-    printf("Itens inseridos com sucesso bb!\n");
+    printf("Itens inseridos com sucesso!\n\n");
     return 1;
 }
 
@@ -100,9 +117,18 @@ void imprimirElementos(Lista *lista){
         printf("A lista esta vazia\n");
         return ;
     }
-    
-    for(p = lista->prim; p != NULL; p = p->prox){
-        printf("Itens inseridos: %s, %s, %s, %d minutos, R$%.2lf, Disponibilidade: %d\n", p->titulo, p->genero, p->classificacao, p->duracao, p->valor_aluguel, p->disponibilidade);
+    int i=1;
+    printf("Detalhes dos filmes na lista:\n\n");
+    for (p = lista->prim; p != NULL; p = p->prox) {
+        printf("Filme %d:\n", i);
+        printf("Titulo: %s\n", p->titulo);
+        printf("Genero: %s\n", p->genero);
+        printf("Classificacao: %s\n", p->classificacao);
+        printf("Duracao: %d minutos\n", p->duracao);
+        printf("Valor do aluguel: R$%.2lf\n", p->valor_aluguel);
+        printf("Disponibilidade: %s\n", p->disponibilidade ? "Disponivel" : "Indisponivel");
+        printf("\n");
+        i++;
     }
     printf("\n");
 }
@@ -123,7 +149,7 @@ ListaNo* buscarElemento(Lista *lista, char titulo[]){
     int posicao = 0;
    for(p = lista->prim; p != NULL; p = p->prox){
         if (strcmp(p->titulo, titulo) == 0) {
-            printf("Film encontrado, %s está na posicao %d\n", p->titulo, posicao);
+            printf("Filme encontrado, %s está na posicao %d\n", p->titulo, posicao);
             return p;
         }
         posicao++;
@@ -179,6 +205,7 @@ int removerElemento(Lista *lista, char remover[]){
         p = lista->prim;
         lista->prim = lista->prim->prox;
         free(p);
+         printf("Item removido!\n\n");
         return 1;
     }
 
@@ -188,6 +215,7 @@ int removerElemento(Lista *lista, char remover[]){
             aux = p->prox;
             p->prox = p->prox->prox;
             free(aux);
+             printf("Item removido!\n\n");
             return 1;
         }
     }
@@ -196,6 +224,7 @@ int removerElemento(Lista *lista, char remover[]){
         aux = p->prox;
         p->prox = NULL;
         free(aux);
+         printf("Item removido!\n\n");
         return 1;
     }
     
@@ -203,35 +232,116 @@ int removerElemento(Lista *lista, char remover[]){
     return 0;
 }
 
+
 int main() {
+    
+    char titulo[50];
+    char genero[30];
+    char classificacao[7];
+    char nomeTitulo[50];
+    int duracao,disponibilidade, menu;
+    double valor_aluguel;
+    int local,posicao;
+    char resposta;
+    ListaNo *busca;
     
     Lista *lista;
     ListaNo *pesquisa;
     
     lista = criarLista();
-
-    if (lista != NULL) {
-        printf("lista criada\n");
+    
+    while(1){
+    printf("O que voce quer fazer? \n1.Inserir filme \n2.Remover filme \n3.Buscar filme \n4.Mostrar filmes \n5.Atualizar filme \n6.Excluir lista\n");
+    scanf("%d",&menu);
+    
+    switch(menu){
+        case 1:
+            printf("Digite os seguintes dados sobre o filme que sera adicionado:\n");
+            printf("Nome do filme: ");
+            scanf("%s",titulo);
+            printf("Genero: ");
+            scanf("%s",genero);
+            printf("Classificacao: ");
+            scanf("%s",classificacao);
+            printf("Duracao em minutos: ");
+            scanf("%d",&duracao);
+            printf("Valor do aluguel por dia: ");
+            scanf("%lf",&valor_aluguel);
+            printf("disponivel? (0/1): ");
+            scanf("%d",&disponibilidade);
+            inserirElemento(lista,titulo,genero,classificacao,duracao,valor_aluguel, disponibilidade);
+        break;
+        case 2:
+            if (lista->prim != NULL) {
+                printf("Digite o nome do filme que será removido:\n");
+                scanf(" %s",titulo);
+                removerElemento(lista,titulo);
+            }else{
+                printf("Lista vazia\n");
+            }
+        break;
+        case 3:
+            if (lista->prim != NULL) {
+                printf("Digite o nome do filme para buscar:\n");
+                scanf(" %s",titulo);
+                busca = buscarElemento(lista,titulo);
+                if(busca != NULL){
+                    printf("\n");
+                }else{
+                    printf("Elemento nao encontrado\n\n");
+                }
+            }else{
+                printf("Lista vazia\n");
+            }
+        break;
+        case 4:
+             imprimirElementos(lista);
+        break;
+        case 5:
+            if (lista->prim != NULL) {
+                printf("Digite o nome do filme que os dados serao atualizados:\n");
+                scanf("%s",nomeTitulo);
+                printf("Agora preencha com os novos dados:\n");
+                printf("Nome do filme: ");
+                scanf("%s",titulo);
+                printf("Genero: ");
+                scanf("%s",genero);
+                printf("Classificacao: ");
+                scanf(" %s",classificacao);
+                printf("Duracao em minutos: ");
+                scanf("%d",&duracao);
+                printf("Valor do aluguel por dia: ");
+                scanf("%lf",&valor_aluguel);
+                printf("disponivel? (0/1): ");
+                scanf("%d",&disponibilidade);
+                atualizarElemento(lista,nomeTitulo,titulo,genero,classificacao,duracao,valor_aluguel, disponibilidade);
+                printf("Atualizado!\n\n");
+            }else{
+                printf("Lista vazia\n");
+            }
+        break;
+        case 6:
+            printf("Deseja mesmo excluir a lista? (s/n)\n");
+            scanf(" %c",&resposta);
+            switch(resposta){
+                case 's':
+                case 'S':
+                excluirLista(lista);
+                exit(0);
+                break;
+                case 'n':
+                case 'N':
+                break;
+                default:
+                printf("Essa opcao nao existe!\n");
+                break;
+            }
+        break;
+        default:
+        printf("Essa opcao nao existe!\n");
+        break;
     }
-    
-    inserirElemento(lista, "madagascar", "animacao", "livre", 120, 2, 1);
-    
-    imprimirElementos(lista);
-    
-    inserirElemento(lista, "jumanji", "acao", "10", 120, 3, 1);
-    
-    inserirElemento(lista, "vingadores", "acao", "livre", 130, 5, 1);
-    
-    pesquisa = buscarElemento(lista, "vingadores");
-    pesquisa = buscarElemento(lista, "jumanji");
-    
-    atualizarElemento(lista, "vingadores", "007", "Acao", "16", 120, 10, 1);
-    printf("\n");
-    imprimirElementos(lista);
-    
-    removerElemento(lista, "jumanji");
-    imprimirElementos(lista);
-    
+}
     
 
     return 0;
