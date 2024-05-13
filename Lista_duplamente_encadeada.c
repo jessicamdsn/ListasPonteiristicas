@@ -62,7 +62,7 @@ int inserirElemento(Lista *lista, char titulo[], char genero[], char classificac
     if(lista->prim == NULL){
         lista->prim = nova;
         lista->ult = nova;
-        printf("Itens inseridos com sucesso bb!\n");
+        printf("Itens inseridos com sucesso!\n\n");
         return 1;
     }
     
@@ -70,7 +70,7 @@ int inserirElemento(Lista *lista, char titulo[], char genero[], char classificac
     nova->ant = lista->ult;
     lista->ult = nova;
 
-    printf("Itens inseridos com sucesso bb!\n");
+    printf("Itens inseridos com sucesso!\n\n");
     return 1;
 }
 
@@ -105,11 +105,19 @@ void imprimirElementos(Lista *lista){
         printf("A lista esta vazia\n");
         return ;
     }
-    
+    int i =1;
+     printf("Detalhes dos filmes na lista:\n\n");
     for(p = lista->prim; p != NULL; p = p->prox){
-        printf("Itens inseridos: %s, %s, %s, %d minutos, R$%.2lf, Disponibilidade: %d\n", p->titulo, p->genero, p->classificacao, p->duracao, p->valor_aluguel, p->disponibilidade);
+        printf("Filme %d:\n", i);
+        printf("Titulo: %s\n", p->titulo);
+        printf("Genero: %s\n", p->genero);
+        printf("Classificacao: %s\n", p->classificacao);
+        printf("Duracao: %d minutos\n", p->duracao);
+        printf("Valor do aluguel: R$%.2lf\n", p->valor_aluguel);
+        printf("Disponibilidade: %s\n", p->disponibilidade ? "Disponivel" : "Indisponivel");
+        printf("\n");
+        i++;
     }
-    printf("\n");
 }
 
 void imprimirElementosOrdemInversa(Lista *lista){
@@ -124,11 +132,19 @@ void imprimirElementosOrdemInversa(Lista *lista){
         printf("A lista esta vazia");
         return ;
     }
-    
+    int i =1;
+    printf("Detalhes dos filmes na lista:\n\n");
     for(p = lista->ult; p != NULL; p = p->ant){
-        printf("Itens inseridos: %s, %s, %s, %d minutos, R$%.2lf, Disponibilidade: %d\n", p->titulo, p->genero, p->classificacao, p->duracao, p->valor_aluguel, p->disponibilidade);
+        printf("Filme %d:\n", i);
+        printf("Titulo: %s\n", p->titulo);
+        printf("Genero: %s\n", p->genero);
+        printf("Classificacao: %s\n", p->classificacao);
+        printf("Duracao: %d minutos\n", p->duracao);
+        printf("Valor do aluguel: R$%.2lf\n", p->valor_aluguel);
+        printf("Disponibilidade: %s\n", p->disponibilidade ? "Disponivel" : "Indisponivel");
+        printf("\n");
+        i++;
     }
-    printf("\n");
 }
 
 ListaNo* buscarElemento(Lista *lista, char titulo[]){
@@ -237,7 +253,7 @@ int main() {
     char nomeTitulo[50];
     int duracao,disponibilidade, menu;
     double valor_aluguel;
-    int local,posicao;
+    int ordem,posicao;
     char resposta;
     ListaNo *busca;
     
@@ -247,7 +263,7 @@ int main() {
     lista = criarLista();
     
     while(1){
-    printf("O que voce quer fazer? \n1.Inserir filme \n2.Remover filme \n3.Buscar filme \n4.Mostrar filmes \n5.Mostrar filmes em ordem inversa \n6.Atualizar filme \n7.Excluir lista\n");
+    printf("O que voce quer fazer? \n1.Inserir filme \n2.Remover filme \n3.Buscar filme \n4.Mostrar filmes \n5.Atualizar filme \n6.Excluir lista\n");
     scanf("%d",&menu);
     
     switch(menu){
@@ -266,7 +282,6 @@ int main() {
             printf("disponivel? (0/1): ");
             scanf("%d",&disponibilidade);
             inserirElemento(lista,titulo,genero,classificacao,duracao,valor_aluguel, disponibilidade);
-            printf("Adicionado!\n\n");
         break;
         case 2:
             if (lista->prim != NULL) {
@@ -280,7 +295,7 @@ int main() {
         case 3:
             if (lista->prim != NULL) {
                 printf("Digite o nome do filme para buscar:\n");
-                scanf(" %s",titulo);
+                scanf("%s",titulo);
                 busca = buscarElemento(lista,titulo);
                 if(busca != NULL){
                     printf("Encontrado!\n\n");
@@ -292,12 +307,21 @@ int main() {
             }
         break;
         case 4:
-             imprimirElementos(lista);
+            printf("Sera exibido em que ordem? \n1.Normal \n2.Inversa\n");
+            scanf("%d",&ordem);
+            switch(ordem){
+                case 1:
+                imprimirElementos(lista);
+                break;
+                case 2:
+                imprimirElementosOrdemInversa(lista);
+                break;
+                default:
+                printf("Essa opcao nao existe!\n");
+                break;
+            }
         break;
         case 5:
-            imprimirElementosOrdemInversa(lista);
-        break;
-        case 6:
             if (lista->prim != NULL) {
                 printf("Digite o nome do filme que os dados serao atualizados:\n");
                 scanf("%s",nomeTitulo);
@@ -320,7 +344,7 @@ int main() {
                 printf("Lista vazia\n");
             }
         break;
-        case 7:
+        case 6:
             printf("Deseja mesmo excluir a lista? (s/n)\n");
             scanf(" %c",&resposta);
             switch(resposta){
