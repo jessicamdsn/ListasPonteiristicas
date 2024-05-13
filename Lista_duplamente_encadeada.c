@@ -1,3 +1,21 @@
+/****************************************************************** 
+ * Nome: Lista encadeada                                          *
+ * Descricao: Implementacao de lista duplamente encadeada.        *
+ *            Esse codigo possui as principais operacoes da lista,*
+ *            como:                                               *
+ *            criar lista,                                        *
+ *            inserir elemento,                                   *
+ *            remover elemento,                                   *
+ *            buscar elemento,                                    *
+ *            mostrar elementos,                                  *
+ *            atualizar elementos,                                *
+ *            excluir lista.                                      *
+ * Autores:                                                       *
+ * Jessica Maria de Souza Neves                                   *
+ * Pedro Henrique de Araujo Santos                                *
+ * Ultima alteracao: 13/05/2024                                   *
+ ******************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -163,7 +181,7 @@ ListaNo* buscarElemento(Lista *lista, char titulo[]){
     int posicao = 0;
    for(p = lista->prim; p != NULL; p = p->prox){
         if (strcmp(p->titulo, titulo) == 0) {
-            printf("Film encontrado, %s está na posicao %d\n", p->titulo, posicao);
+            printf("Filme encontrado, %s está na posicao %d\n", p->titulo, posicao);
             return p;
         }
     }
@@ -295,7 +313,7 @@ int main() {
                 scanf("%s",titulo);
                 busca = buscarElemento(lista,titulo);
                 if(busca != NULL){
-                    printf("Encontrado!\n\n");
+                    printf("\n");
                 }else{
                     printf("Elemento nao encontrado\n");
                 }
@@ -306,8 +324,7 @@ int main() {
         case 4:
             if(lista->prim == NULL){
                     printf("A lista esta vazia\n");
-                    return 0;
-                }
+            }else{
             printf("Sera exibido em que ordem? \n1.Normal \n2.Inversa\n");
             scanf("%d",&ordem);
             
@@ -321,6 +338,7 @@ int main() {
                 default:
                 printf("Essa opcao nao existe!\n");
                 break;
+            }
             }
         break;
         case 5:
