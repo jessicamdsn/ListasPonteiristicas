@@ -214,32 +214,26 @@ int removerElemento(Lista *lista, char remover[]){
         return 0;
     }
 
-    if( strcmp(lista->prim->titulo, remover) == 0){
+    if(strcmp(lista->prim->titulo, remover) == 0){
         aux = lista->prim;
-        lista->prim->prox->ant = NULL;
+        if(lista->prim->prox != NULL)
+            lista->prim->prox->ant = NULL;
         lista->prim = lista->prim->prox;
         free(aux);
         return 1;
     }
 
-    for(p = lista->prim; p->prox->prox != NULL; p = p->prox){
-        /*Verificando se e o elemento que sera removido da lista*/
-        if(strcmp(p->prox->titulo, remover) == 0){
-            aux = p->prox;
-            p->prox = p->prox->prox;
-            p->prox->ant = p;
-            free(aux);
-            return 1;
-        }
-    }
-    
-    if(strcmp(p->prox->titulo, remover) == 0){
-        aux = p->prox;
-        p->prox = NULL;
+    for (p = lista->prim; p != NULL; p = p->prox) {
+    if (strcmp(p->titulo, remover) == 0) {
+        aux = p;
+        if (p->ant != NULL)
+            p->ant->prox = p->prox;
+        if (p->prox != NULL)
+            p->prox->ant = p->ant;
         free(aux);
         return 1;
     }
-    
+}
     printf("valor nao foi encontrado\n");
     return 0;
 }
