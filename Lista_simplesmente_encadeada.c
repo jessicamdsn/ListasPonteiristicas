@@ -102,7 +102,7 @@ void imprimirElementos(Lista *lista){
     }
     
     for(p = lista->prim; p != NULL; p = p->prox){
-        printf("Ites inseridos: %s, %s, %s, %d minutos, R$%.2lf, Disponibilidade: %d\n", p->titulo, p->genero, p->classificacao, p->duracao, p->valor_aluguel, p->disponibilidade);
+        printf("Itens inseridos: %s, %s, %s, %d minutos, R$%.2lf, Disponibilidade: %d\n", p->titulo, p->genero, p->classificacao, p->duracao, p->valor_aluguel, p->disponibilidade);
     }
     printf("\n");
 }
