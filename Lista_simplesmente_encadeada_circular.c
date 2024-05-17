@@ -1,3 +1,19 @@
+/****************************************************************** 
+ * Nome: Lista simplesmente encadeada e circular                  *
+ * Descricao: Implementacao da lista Circular. Esse codigo possui *
+ *            as principais operacoes da lista, como:             *
+ *            criar lista,                                        *
+ *            inserir elemento,                                   *
+ *            remover elemento,                                   *
+ *            buscar elemento,                                    *
+ *            mostrar elementos,                                  *
+ *            atualizar elementos,                                *
+ *            excluir lista.                                      *
+ * Autores:                                                       *
+ * Jessica Maria de Souza Neves                                   *
+ * Pedro Henrique de Araujo Santos                                *
+ * Ultima alteracao: 17/05/2024                                   *
+ ******************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
