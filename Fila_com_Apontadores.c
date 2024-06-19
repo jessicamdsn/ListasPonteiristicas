@@ -1,5 +1,5 @@
 /****************************************************************** 
- * Nome: Lista com vetores                                        *
+ * Nome: Fila com apontadores                                     *
  * Descricao: Implementacao de fila com uso de apontadores.       *
  *            Esse codigo possui as principais operacoes da       *
  *            lista, como:                                        *
