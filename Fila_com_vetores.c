@@ -1,5 +1,5 @@
 /****************************************************************** 
- * Nome: Lista com vetores                                        *
+ * Nome: Fila com vetores                                        *
  * Descricao: Implementacao de fila com uso de vetores (array).  *
  *            Esse codigo possui as principais operacoes da       *
  *            lista, como:                                        *
