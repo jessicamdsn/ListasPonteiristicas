@@ -1,3 +1,19 @@
+/****************************************************************** 
+ * Nome: Pilha com apontadores                                    *
+ * Descricao: Implementacao de pilha com apontadores              *
+ *            Esse codigo possui as principais operacoes da       *
+ *            lista, como:                                        *
+ *            criar lista,                                        *
+ *            push,                                               *
+ *            pop.                                                *
+ *            ver topo,                                           *
+ *            ehvazia,                                            *
+ *            excluir pilha,                                      *
+ * Autores:                                                       *
+ * Jessica Maria de Souza Neves                                   *
+ * Pedro Henrique de Araujo Santos                                *
+ * Ultima alteracao: 19/05/2024                                   *
+ ******************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
