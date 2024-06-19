@@ -1,16 +1,15 @@
 /****************************************************************** 
- * Nome: Lista com vetores                                        *
- * Descricao: Implementacao de lista com uso de vetores (array).  *
+ * Nome: Pilha com vetores                                        *
+ * Descricao: Implementacao de Pilha com uso de vetores (array).  *
  *            Esse codigo possui as principais operacoes da       *
  *            lista, como:                                        *
- *            criar lista,                                        *
- *            inserir elemento,                                   *
- *            remover elemento,                                   *
- *            buscar elemento,                                    *
- *            mostrar elementos,                                  *
- *            atualizar elementos,                                *
- *            excluir lista.                                      *
- * Autor: Mayrton Dias                                            *
+ *            criar pilha,                                        *
+ *            pop,                                                *
+ *            push,                                               *
+ *            excluir pilha.                                      *
+ * Autores:                                                       *
+ * Jessica Maria de Souza Neves                                   *
+ * Pedro Henrique de Araujo Santos                                *
  * Ultima alteracao: 17/04/2024                                   *
  ******************************************************************/
 
