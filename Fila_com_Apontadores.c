@@ -1,3 +1,17 @@
+/****************************************************************** 
+ * Nome: Lista com vetores                                        *
+ * Descricao: Implementacao de fila com uso de apontadores.       *
+ *            Esse codigo possui as principais operacoes da       *
+ *            lista, como:                                        *
+ *            criar lista,                                        *
+ *            enqueue,                                            *
+ *            dequeue,                                            *
+ *            excluir fila.                                       *
+ * Autores:                                                       *
+ * Jessica Maria de Souza Neves                                   *
+ * Pedro Henrique de Araujo Santos                                *
+ * Ultima alteracao: 19/05/2024                                   *
+ ******************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
